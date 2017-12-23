@@ -1,13 +1,319 @@
+{% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-hans">
 
 <head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
+
+    <!-- meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>尧翔的个人博客</title>
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'blog/css/materialize.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{% static 'blog/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{% static 'blog/css/custom.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+
 </head>
 
 <body>
-    <h1>{{ welcome }}</h1>
+
+    <!-- nav -->
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo">Logo</a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="#">Navbar Link</a>
+                </li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <li>
+                    <a href="#">Navbar Link</a>
+                </li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse">
+                <i class="material-icons">menu</i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- banner -->
+    <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <br>
+                <br>
+                <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
+                <div class="row center">
+                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                </div>
+                <div class="row center">
+                    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+                </div>
+                <br>
+                <br>
+
+            </div>
+        </div>
+        <div class="parallax">
+            <img src="{% static 'blog/img/bg1.jpg' %}" alt="Unsplashed background img 1">
+        </div>
+    </div>
+
+    <!-- content -->
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                
+                <!-- main -->
+                <main class="col s8">
+                    {% for post in post_list %}
+                    <article class="post post-{{ post.pk }}">
+                        <header class="entry-header">
+                            <h1 class="entry-title">
+                                <a href="single.html">{{ post.title }}</a>
+                            </h1>
+                            <div class="entry-meta">
+                                <span class="post-category">
+                                    <a href="#">{{ post.category.name }}</a>
+                                </span>
+                                <span class="post-date">
+                                    <a href="#">
+                                        <time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }}</time>
+                                    </a>
+                                </span>
+                                <span class="post-author">
+                                    <a href="#">{{ post.author }}</a>
+                                </span>
+                                <span class="comments-link">
+                                    <a href="#">4 评论</a>
+                                </span>
+                                <span class="views-count">
+                                    <a href="#">588 阅读</a>
+                                </span>
+                            </div>
+                        </header>
+                        <div class="entry-content clearfix">
+                            <p>{{ post.excerpt }}</p>
+                            <div class="read-more cl-effect-14">
+                                <a href="#" class="more-link">继续阅读
+                                    <span class="meta-nav">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    {% empty %}
+                    <div class="no-post">暂时还没有发布的文章！</div>
+                    {% endfor %}
+
+                    <div class="pagination">
+                        <ul>
+                            <li>
+                                <a href="">1</a>
+                            </li>
+                            <li>
+                                <a href="">...</a>
+                            </li>
+                            <li>
+                                <a href="">4</a>
+                            </li>
+                            <li>
+                                <a href="">5</a>
+                            </li>
+                            <li class="current">
+                                <a href="">6</a>
+                            </li>
+                            <li>
+                                <a href="">7</a>
+                            </li>
+                            <li>
+                                <a href="">8</a>
+                            </li>
+                            <li>
+                                <a href="">...</a>
+                            </li>
+                            <li>
+                                <a href="">11</a>
+                            </li>
+                        </ul>
+                    </div>
+                </main>
+
+                <!-- aside -->
+                <aside class="col s4">
+                    <div class="widget widget-recent-posts">
+                        <h3 class="widget-title">最新文章</h3>
+                        <ul>
+                            <li>
+                                <i class="tiny material-icons">bookmark</i><a href="#">Django + pyecharts</a>
+                            </li>
+                            <li>
+                                <i class="tiny material-icons">bookmark</i><a href="#">Django 博客使用 Markdown</a>
+                            </li>
+                            <li>
+                                <i class="tiny material-icons">bookmark</i><a href="#">部署 Django 博客</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget widget-archives">
+                        <h3 class="widget-title">归档</h3>
+                        <ul>
+                            <li>
+                                <i class="tiny material-icons">archive</i><a href="#">2017 年 12 月</a>
+                            </li>
+                            <li>
+                                <i class="tiny material-icons">archive</i><a href="#">2017 年 11 月</a>
+                            </li>
+                            <li>
+                                <i class="tiny material-icons">archive</i><a href="#">2017 年 10 月</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="widget widget-category">
+                        <h3 class="widget-title">分类</h3>
+                        <ul>
+                            <li>
+                                <i class="tiny material-icons">label</i><a href="#">Tango with Django 
+                                    <span class="post-count">(13)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <i class="tiny material-icons">label</i><a href="#">Python 数据分析
+                                    <span class="post-count">(11)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <i class="tiny material-icons">label</i><a href="#">Hexo 博客教程
+                                    <span class="post-count">(8)</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="widget widget-tag-cloud">
+                        <h3 class="widget-title">标签云</h3>
+                        <ul>
+                            <li>
+                                <a href="#">Django</a>
+                            </li>
+                            <li>
+                                <a href="#">Python</a>
+                            </li>
+                            <li>
+                                <a href="#">Java</a>
+                            </li>
+                            <li>
+                                <a href="#">笔记</a>
+                            </li>
+                            <li>
+                                <a href="#">文档</a>
+                            </li>
+                            <li>
+                                <a href="#">AngularJS</a>
+                            </li>
+                            <li>
+                                <a href="#">CSS</a>
+                            </li>
+                            <li>
+                                <a href="#">JavaScript</a>
+                            </li>
+                            <li>
+                                <a href="#">Snippet</a>
+                            </li>
+                            <li>
+                                <a href="#">jQuery</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="rss">
+                        <a href="">
+                            <i class="material-icons">rss_feed</i> RSS 订阅</a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- signature -->
+    <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div class="row center">
+                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                </div>
+            </div>
+        </div>
+        <div class="parallax">
+            <img src="{% static 'blog/img/bg2.jpg' %}" alt="Unsplashed background img 2">
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="page-footer teal">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would
+                        help support and continue development on this project and is greatly appreciated.</p>
+
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Settings</h5>
+                    <ul>
+                        <li>
+                            <a class="white-text" href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#!">Link 2</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#!">Link 3</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#!">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li>
+                            <a class="white-text" href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#!">Link 2</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#!">Link 3</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#!">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by
+                <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
+        </div>
+    </footer>
+
+    <!--  Scripts-->
+    <script src="{% static 'blog/js/jquery.min.js' %}"></script>
+    <script src="{% static 'blog/js/materialize.min.js' %}"></script>
+    <script src="{% static 'blog/js/init.js' %}"></script>
+
 </body>
 
 </html>
