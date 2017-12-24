@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{% static 'blog/css/materialize.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="{% static 'blog/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="{% static 'blog/css/custom.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
 
 </head>
 
@@ -27,13 +26,31 @@
             <a id="logo-container" href="#" class="brand-logo">尧翔的个人博客</a>
             <ul class="right hide-on-med-and-down">
                 <li>
-                    <a href="#">Navbar Link</a>
+                    <a href="#">首页</a>
+                </li>
+                <li>
+                    <a href="#">分类</a>
+                </li>
+                <li>
+                    <a href="#">归档</a>
+                </li>
+                <li>
+                    <a href="#">阅读</a>
                 </li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
                 <li>
-                    <a href="#">Navbar Link</a>
+                    <a href="#">首页</a>
+                </li>
+                <li>
+                    <a href="#">分类</a>
+                </li>
+                <li>
+                    <a href="#">归档</a>
+                </li>
+                <li>
+                    <a href="#">阅读</a>
                 </li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse">
@@ -46,30 +63,25 @@
     <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
             <div class="container">
-                <br>
-                <br>
-                <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
-                <div class="row center">
-                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                <div id="brief">
+                    <h1 class="header center white-text text-lighten-2">尧翔</h1>
+                    <div class="row center">
+                        <h5 class="header col s12 light">Product Manager, Huge Nerd.</h5>
+                    </div>
                 </div>
-                <div class="row center">
-                    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
-                </div>
-                <br>
-                <br>
 
             </div>
         </div>
         <div class="parallax">
-            <img src="{% static 'blog/img/bg1.jpg' %}" alt="Unsplashed background img 1">
+            <img src="{% static 'blog/img/bg.jpg' %}" alt="Unsplashed background img 1">
         </div>
     </div>
 
     <!-- content -->
-    <div class="content-body">
+    <div class="content-body grey lighten-4">
         <div class="container">
             <div class="row">
-                
+
                 <!-- main -->
                 <main class="col s8">
                     {% for post in post_list %}
@@ -150,13 +162,16 @@
                         <h3 class="widget-title">最新文章</h3>
                         <ul>
                             <li>
-                                <i class="tiny material-icons">bookmark</i><a href="#">Django + pyecharts</a>
+                                <i class="tiny material-icons">bookmark</i>
+                                <a href="#">Django + pyecharts</a>
                             </li>
                             <li>
-                                <i class="tiny material-icons">bookmark</i><a href="#">Django 博客使用 Markdown</a>
+                                <i class="tiny material-icons">bookmark</i>
+                                <a href="#">Django 博客使用 Markdown</a>
                             </li>
                             <li>
-                                <i class="tiny material-icons">bookmark</i><a href="#">部署 Django 博客</a>
+                                <i class="tiny material-icons">bookmark</i>
+                                <a href="#">部署 Django 博客</a>
                             </li>
                         </ul>
                     </div>
@@ -164,13 +179,16 @@
                         <h3 class="widget-title">归档</h3>
                         <ul>
                             <li>
-                                <i class="tiny material-icons">archive</i><a href="#">2017 年 12 月</a>
+                                <i class="tiny material-icons">archive</i>
+                                <a href="#">2017 年 12 月</a>
                             </li>
                             <li>
-                                <i class="tiny material-icons">archive</i><a href="#">2017 年 11 月</a>
+                                <i class="tiny material-icons">archive</i>
+                                <a href="#">2017 年 11 月</a>
                             </li>
                             <li>
-                                <i class="tiny material-icons">archive</i><a href="#">2017 年 10 月</a>
+                                <i class="tiny material-icons">archive</i>
+                                <a href="#">2017 年 10 月</a>
                             </li>
                         </ul>
                     </div>
@@ -179,17 +197,20 @@
                         <h3 class="widget-title">分类</h3>
                         <ul>
                             <li>
-                                <i class="tiny material-icons">label</i><a href="#">Tango with Django 
+                                <i class="tiny material-icons">label</i>
+                                <a href="#">Tango with Django
                                     <span class="post-count">(13)</span>
                                 </a>
                             </li>
                             <li>
-                                <i class="tiny material-icons">label</i><a href="#">Python 数据分析
+                                <i class="tiny material-icons">label</i>
+                                <a href="#">Python 数据分析
                                     <span class="post-count">(11)</span>
                                 </a>
                             </li>
                             <li>
-                                <i class="tiny material-icons">label</i><a href="#">Hexo 博客教程
+                                <i class="tiny material-icons">label</i>
+                                <a href="#">Hexo 博客教程
                                     <span class="post-count">(8)</span>
                                 </a>
                             </li>
@@ -251,52 +272,48 @@
             </div>
         </div>
         <div class="parallax">
-            <img src="{% static 'blog/img/bg2.jpg' %}" alt="Unsplashed background img 2">
+            <img src="{% static 'blog/img/bg.jpg' %}" alt="Unsplashed background img 2">
         </div>
     </div>
 
     <!-- footer -->
-    <footer class="page-footer teal">
+    <footer class="page-footer blue">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Company Bio</h5>
-                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would
-                        help support and continue development on this project and is greatly appreciated.</p>
+                    <h5 class="white-text">关于</h5>
+                    <p class="grey-text text-lighten-4">
+                        你好，我叫尧翔，英文名Gaius-Yao，是一名产品经理，这里是我的个人博客。<br>
+                        个人方向是数据可视化和用户体验设计，希望通过这个博客，分享自己的心得体会，请多指教。如果你也有这方面的兴趣，可以通过右侧的联系方式联系我。
+                    </p>
 
 
                 </div>
                 <div class="col l3 s12">
-                    <h5 class="white-text">Settings</h5>
+                    <h5 class="white-text">联系方式</h5>
                     <ul>
                         <li>
-                            <a class="white-text" href="#!">Link 1</a>
+                            <a class="white-text" href="https://github.com/gaiusyao" target="__blabk">GitHub: gaiusyao</a>
                         </li>
                         <li>
-                            <a class="white-text" href="#!">Link 2</a>
+                            邮箱: gaiusyao@yeah.net
                         </li>
                         <li>
-                            <a class="white-text" href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 4</a>
+                            微信: GAIUS-YAO
                         </li>
                     </ul>
                 </div>
                 <div class="col l3 s12">
-                    <h5 class="white-text">Connect</h5>
+                    <h5 class="white-text">友情链接</h5>
                     <ul>
                         <li>
-                            <a class="white-text" href="#!">Link 1</a>
+                            <a class="white-text" href="https://www.jianshu.com/u/f9bdc00c5771" target="__blabk">尧翔的简书</a>
                         </li>
                         <li>
-                            <a class="white-text" href="#!">Link 2</a>
+                            <a class="white-text" href="https://william8188.github.io/" target="__blabk">李梓峰的个人博客</a>
                         </li>
                         <li>
-                            <a class="white-text" href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!">Link 4</a>
+                            <a class="white-text" href="http://blog.geekaholic.cn/" target="__blabk">Geekaholic</a>
                         </li>
                     </ul>
                 </div>
@@ -304,8 +321,18 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Made by
-                <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                <div class="row">
+                    <div class="col l3 s6">
+                        © 2017
+                        <a class="orange-text text-lighten-3" href="https://github.com/gaiusyao">Gaius-Yao</a>, All rights reserved.
+                    </div>
+                    <div class="col l3 s6 right">
+                        Powered by
+                        <a class="orange-text text-lighten-3" href="https://www.djangoproject.com">Django</a>
+                        &
+                        <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
