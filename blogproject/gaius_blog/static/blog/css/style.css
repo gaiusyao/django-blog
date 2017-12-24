@@ -1,9 +1,8 @@
 /**
  * Custom Materialize Style
  */
-
-nav ul a, nav .brand-logo {
-  color: #444;
+* {
+  font-family:Helvetica,Tahoma,Arial,STXihei,"华文细黑","Microsoft YaHei","微软雅黑",sans-serif 
 }
 
 p {
@@ -12,9 +11,9 @@ p {
 
 img {
   border: 0;
-  display:block;
-  max-width:100%;
-  height:auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .button-collapse {
@@ -59,4 +58,3 @@ img {
 footer.page-footer {
   margin: 0;
 }
-
