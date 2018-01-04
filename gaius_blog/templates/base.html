@@ -1,0 +1,245 @@
+{% load staticfiles %}
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+
+    <!-- meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" type="image/png" href="{% static 'blog/img/favicon.png' %}">
+    <title>尧翔的个人博客</title>
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'blog/css/materialize.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{% static 'blog/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{% static 'blog/css/pace.css' %}" type="text/css" rel="stylesheet" >
+    <link href="{% static 'blog/css/highlights/vim.css' %}" type="text/css" rel="stylesheet" >
+
+</head>
+
+<body>
+
+    <!-- nav -->
+    <nav class="blue" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="{% url 'blog:index' %}" class="brand-logo">Gaius Blog</a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="{% url 'blog:index' %}">首页</a>
+                </li>
+                <li>
+                    <a href="#">分类</a>
+                </li>
+                <li>
+                    <a href="#">归档</a>
+                </li>
+                <li>
+                    <a href="#">阅读</a>
+                </li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <li>
+                    <a href="{% url 'blog:index' %}">首页</a>
+                </li>
+                <li>
+                    <a href="#">分类</a>
+                </li>
+                <li>
+                    <a href="#">归档</a>
+                </li>
+                <li>
+                    <a href="#">阅读</a>
+                </li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse">
+                <i class="material-icons" style="color:white">menu</i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- banner -->
+    <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div id="brief">
+                    <h1 class="header center white-text text-lighten-2">尧翔</h1>
+                    <div class="row center">
+                        <h5 class="header col s12 light">Product Manager, Huge Nerd.</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="parallax">
+            <img src="{% static 'blog/img/bg.jpg' %}" alt="Unsplashed background img 1">
+        </div>
+    </div>
+
+    <!-- content -->
+    <div class="content-body grey lighten-4">
+        <div class="container">
+            <div class="row">
+
+                <!-- main -->
+                <main class="col l8 s12">
+                    {% block main %}
+                    {% endblock main %}
+                </main>
+
+                <!-- aside -->
+                <aside class="col l4 s12">
+                    {% block toc %}
+                    {% endblock toc %}
+                    <div class="widget widget-recent-posts">
+                        <h3 class="widget-title">最新文章</h3>
+                        {% get_recent_posts as recent_post_list %}
+                        <ul>
+                            {% for post in recent_post_list %}
+                                <li>
+                                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                </li>
+                            {% empty %}
+                                暂无文章！
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="widget widget-archives">
+                        <h3 class="widget-title">归档</h3>
+                        {% archives as date_list %}
+                        <ul>
+                            {% for date in date_list %}
+                                <li>
+                                    <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }}
+                                        年 {{ date.month }} 月</a>
+                                </li>
+                            {% empty %}
+                                暂无归档！
+                            {% endfor %}
+                        </ul>
+                    </div>
+    
+                    <div class="widget widget-category">
+                        <h3 class="widget-title">分类</h3>
+                        {% get_categories as category_list %}
+                        <ul>
+                            {% for category in category_list %}
+                                <li>
+                                    <a href="{% url 'blog:category' category.pk %}">{{ category.name }} <span
+                                            class="post-count">({{ category.num_posts }})</span></a>
+                                </li>
+                            {% empty %}
+                                暂无分类！
+                            {% endfor %}
+                        </ul>
+                    </div>
+    
+                    <div class="widget widget-tag-cloud">
+                        <h3 class="widget-title">标签云</h3>
+                        {% get_tags as tag_list %}
+                        <ul>
+                            {% for tag in tag_list %}
+                                <li>
+                                    <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
+                                </li>
+                            {% empty %}
+                                暂无标签！
+                            {% endfor %}
+                        </ul>
+                    </div>
+    
+                    <div class="rss">
+                        <a href="{% url 'rss' %}"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- signature -->
+    <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div class="row center">
+                    <h5 class="header col s12 light">ptint("The Ultimate Answer is {0} !".format(len(question)))</h5>
+                </div>
+            </div>
+        </div>
+        <div class="parallax">
+            <img src="{% static 'blog/img/bg.jpg' %}" alt="Unsplashed background img 2">
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="page-footer blue">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">关于</h5>
+                    <p class="grey-text text-lighten-4">
+                        我叫尧翔，是一名产品经理，这是我的个人博客。<br>
+                        希望通过这个博客，分享自己在产品和技术方面的心得体会。<br>
+                        如果你也有这方面的兴趣，可以通过旁边的联系方式联系我。
+                    </p>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">联系方式</h5>
+                    <ul>
+                        <li>
+                            <a class="white-text" href="https://github.com/gaiusyao" target="__blabk">GitHub: gaiusyao</a>
+                        </li>
+                        <li>
+                            邮箱: gaiusyao@yeah.net
+                        </li>
+                        <li>
+                            微信: GAIUS-YAO
+                        </li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">友情链接</h5>
+                    <ul>
+                        <li>
+                            <a class="white-text" href="https://www.jianshu.com/u/f9bdc00c5771" target="__blabk">尧翔的简书</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="https://william8188.github.io/" target="__blabk">李梓峰的个人博客</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="http://blog.geekaholic.cn/" target="__blabk">Geekaholic</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        © 2017
+                        <a class="orange-text text-lighten-3" href="https://github.com/gaiusyao">Gaius-Yao</a>, All rights reserved.
+                    </div>
+                    <div class="col l6 s12 right">
+                        Powered by
+                        <a class="orange-text text-lighten-3" href="https://www.djangoproject.com">Django</a>
+                        &
+                        <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--  Scripts-->
+    <script src="{% static 'blog/js/jquery.min.js' %}"></script>
+    <script src="{% static 'blog/js/materialize.min.js' %}"></script>
+    <script src="{% static 'blog/js/init.js' %}"></script>
+
+</body>
+
+</html>
